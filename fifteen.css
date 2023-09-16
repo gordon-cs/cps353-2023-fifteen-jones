@@ -16,6 +16,8 @@ body {
 #puzzlearea div {
   font-size: 40pt;
   display: inline-flex;
+  position: absolute;
+  justify-content: center;
   height: 90px;
   width: 90px;
   border: 5px solid black;
