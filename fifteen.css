@@ -1,0 +1,22 @@
+body {
+  font-family: cursive;
+  font-size: 14pt;
+  text-align: center;
+}
+
+#puzzlearea {
+  height: 400px;
+  width: 400px;
+  border: 1px solid red;
+  font-size: 0; /* remove spacing between divs */
+  text-align: left;
+  margin: auto;
+}
+
+#puzzlearea div {
+  font-size: 40pt;
+  display: inline-flex;
+  height: 90px;
+  width: 90px;
+  border: 5px solid black;
+}
