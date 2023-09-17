@@ -6,16 +6,25 @@ let positions = ["one_one", "one_two", "one_three", "one_four",
                  "four_one", "four_two", "four_three", "four_four"]
 
 setupPosition();
-// mountBackground();
+mountBackground();
 
 function setupPosition() {
   for(let i = 0; i<tiles.length; i++) {
     let tile = tiles[i];
     tile.classList.add(positions[i]);
+    tile.style.backgroundImage = "url('background.jpg')";
   }
 }
 
 function mountBackground() {
-  
-  console.log(divs);
+  for (let r = 0; r < 4; r++) {
+    for (let c = 0; c < 4; c++) {
+      let index = (r * 4) + c;
+      if (index < 15) {
+        let yPos = -100 * r;
+        let xPos = -100 * c;
+        tiles[index].style.backgroundPosition = xPos + "px " + yPos + "px";
+      }
+    }
+  }
 }
