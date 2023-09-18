@@ -1,3 +1,5 @@
+"use strict";
+
 let tiles = [].slice.call(document.getElementsByTagName("div")).slice(1);
 console.log(tiles);
 let positions = ["one_one", "one_two", "one_three", "one_four", 
