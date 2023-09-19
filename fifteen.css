@@ -22,7 +22,7 @@ body {
   width: 90px;
   border: 5px solid black;
   color: white;
-  transition: margin 0.5s;
+  transition: margin 0.4s cubic-bezier(0.85, 0, 0.15, 1);
 }
 
 .hover:hover {
