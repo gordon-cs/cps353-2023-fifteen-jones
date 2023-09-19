@@ -28,9 +28,14 @@ function moveTiles(event) {
   let tilePosX = tile.style.marginLeft;
   let tilePosY = tile.style.marginTop;
  // if (Math.abs(tilePosX.substring(0,-2)-emptySquare[1].substring(0,-2)))
-  console.log(Math.abs(tilePosX.substring(0,-2)-emptySquare[1].substring(0,-2)));
-  tile.style.marginLeft = emptySquare[0];
-  tile.style.marginTop  = emptySquare[1];
-  emptySquare = [tilePosX, tilePosY];
+  let xDistance = Math.abs(tilePosX.substring(0,tilePosX.length-2)-emptySquare[0].substring(0,emptySquare[0].length-2))
+  let yDistance = Math.abs(tilePosY.substring(0,tilePosY.length-2)-emptySquare[1].substring(0,emptySquare[1].length-2))
+  console.log(xDistance + " " + yDistance);
+  console.log(xDistance <= 100);
+  if ((xDistance <= 100 && yDistance == 0) || (xDistance == 0 && yDistance <= 100)) {
+    tile.style.marginLeft = emptySquare[0];
+    tile.style.marginTop  = emptySquare[1];
+    emptySquare = [tilePosX, tilePosY];
+  }
 }
 
