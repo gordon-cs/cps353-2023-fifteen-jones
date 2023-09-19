@@ -35,4 +35,3 @@ function moveTiles(event) {
     emptySquare = [tilePosX, tilePosY];
   }
 }
-
