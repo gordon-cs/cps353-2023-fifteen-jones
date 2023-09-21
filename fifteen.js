@@ -18,7 +18,6 @@ class Fifteen {
       }
       this.setupHover();
     });
-
     this.setupBoard();
     this.setupHover();
   }
