@@ -1,12 +1,9 @@
 "use strict";
 
 class Fifteen {
-  tiles;
-
   constructor() {
     this.tiles = [].slice.call(document.getElementsByTagName("div")).slice(1);
     this.emptySquare = ["300px","300px"];
-    this.moveTile = this.moveTiles;
     document.getElementById("puzzlearea").addEventListener('click', (event) => {
       let tile = this.tiles[event.target.innerText - 1];
       if (this.isSlidable(event.target.innerText - 1)) {
@@ -32,7 +29,6 @@ class Fifteen {
           let tile = this.tiles[index];
           tile.style.marginLeft = xPos + "px";
           tile.style.marginTop = yPos + "px";
-          tile.style.backgroundImage = "url('background.jpg')";
           tile.style.backgroundPosition = -xPos + "px " + -yPos + "px";
           tile.classList.add("standard");
         }
