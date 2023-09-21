@@ -7,7 +7,7 @@ class Fifteen {
     this.tiles = [].slice.call(document.getElementsByTagName("div")).slice(1);
     this.emptySquare = ["300px","300px"];
     this.moveTile = this.moveTiles;
-    document.getElementById("puzzlearea").addEventListener('click', () => {
+    document.getElementById("puzzlearea").addEventListener('click', (event) => {
       let tile = this.tiles[event.target.innerText - 1];
       if (this.isSlidable(event.target.innerText - 1)) {
         let tilePosX = tile.style.marginLeft;
@@ -18,7 +18,7 @@ class Fifteen {
       }
       this.setupHover();
     });
-    
+
     this.setupBoard();
     this.setupHover();
   }
@@ -67,4 +67,4 @@ class Fifteen {
   }
 }
 
-const fifteen = new Fifteen();
+new Fifteen();
