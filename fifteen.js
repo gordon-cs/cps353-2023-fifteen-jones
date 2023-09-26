@@ -1,7 +1,7 @@
-// Assignment 5: Fifteen Puzzle
-// Authors: Matthew Jones and Luke Hart
-// Student code for Assignment 5 of CPS353, which implements a fifteen 
-// sliding puzzle using HTML, CSS, and JavaScript
+/*  Assignment 5: Fifteen Puzzle
+   Authors: Matthew Jones and Luke Hart
+   Student code for Assignment 5 of CPS353, which implements a fifteen 
+   sliding puzzle using HTML, CSS, and JavaScript */
 
 "use strict";
 
@@ -10,14 +10,16 @@ class Fifteen {
   constructor() {
     // Array of the div objects slicing off the parent puzzle area div
     this.tiles = [].slice.call(document.getElementsByTagName("div")).slice(1);
+    // Array of currently valid tiles
+    this.validTiles = [];
     // Initial margin values of the empty square
     this.emptySquare = ["300px","300px"];
     this.setupBoard();
     this.setupHover();
 
-    // Listener for when the board is clicked, contains a check to see if the
-    // clicked tile can be moved, swaps it with the empty sqaure, and updates
-    // hover effects
+    /* Listener for when the board is clicked, contains a check to see if the
+       clicked tile can be moved, swaps it with the empty sqaure, and updates
+       hover effects */
     document.getElementById("puzzlearea").addEventListener('click', (event) => {
       let tile = this.tiles[event.target.innerText - 1];
       if (this.isValid(tile)) {
@@ -27,10 +29,20 @@ class Fifteen {
         this.setupHover();
       }
     });
+
+    /* Listener for when the shuffle button is clicked, calls the shuffle
+       board function */
+    document.getElementById("shufflebutton").addEventListener('click', 
+    (event) => {
+      for (let i = 0; i < 1000; i++) {
+        this.shuffleBoard(this.validTiles);
+        this.setupHover();
+      } 
+    });
   }
 
-  // Sets up the initial positions of the tiles and sets the 
-  // background position
+  /* Sets up the initial positions of the tiles and sets the 
+     background position */
   setupBoard() {
     for (let r = 0; r < 4; r++) {
       for (let c = 0; c < 4; c++) {
@@ -47,22 +59,24 @@ class Fifteen {
 
   // Adds hover effects to movable tiles, removes it from all others
   setupHover() {
+    this.validTiles = [];
     for(let i = 0; i < this.tiles.length; i++) {
       let tile = this.tiles[i];
       if (this.isValid(tile)) {
         tile.classList.add("valid");
+        this.validTiles.push(tile);
       } else {
         tile.classList.remove("valid");
       }
     }
   }
 
-  // Checks if a tile is within 100 px of the empty square in exactly 
-  // one axis
-  // Args: 
-  // tile - a HTML div object representing a tile on the board
-  // Returns: 
-  // Boolean - true if tile is playable
+  /* Checks if a tile is within 100 px of the empty square in exactly 
+     one axis
+     Args: 
+     tile - a HTML div object representing a tile on the board
+     Returns: 
+     Boolean - true if tile is playable */
   isValid(tile) {
     let tilePos = 
     [tile.style.marginLeft.substring(0,tile.style.marginLeft.length-2), 
@@ -76,13 +90,23 @@ class Fifteen {
             (xDistance == 0 && yDistance <= 100));
   }
 
-  // Sets the position of a given tile by setting its margins 
-  // Args: 
-  // tile - a HTML div object representing a tile on the board
-  // left - value for the new left margin of the tile, string in format "###px"
-  // top - value for the new top margin of the tile, string in format "###px"
-  // Returns: 
-  // None
+  /* Perform a random shuffling on the board
+     Args:
+     validTiles - an array of the valid tiles
+     Returns:
+     None */
+  shuffleBoard(validTiles) {
+    let validIndex = Math.floor(Math.random() * (validTiles.length));
+    validTiles[validIndex].click();
+  }
+
+  /* Sets the position of a given tile by setting its margins 
+     Args: 
+     tile - a HTML div object representing a tile on the board
+     left - value for the new left margin of the tile, string in format "###px"
+     top - value for the new top margin of the tile, string in format "###px"
+     Returns: 
+     None */
   setTilePosition(tile, left, top) {
     tile.style.marginLeft = left;
     tile.style.marginTop = top;
